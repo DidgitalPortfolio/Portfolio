@@ -1,0 +1,14 @@
+{
+    "name": "maks/design-php.loc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Design\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "gabordemooij/redbean": "dev-master",
+        "miladrahimi/phprouter": "5.*"
+    }
+}
