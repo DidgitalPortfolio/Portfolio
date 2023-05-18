@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Design Main</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=Italiana&family=Italianno&family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body">
+    <header>
+        <div class="container">
+            <div class="top-block">
+                <div class="top-block__logo">
+                    DiGifolio
+                </div>
+                <div class="top-block__desc">
+                    <h3 class="top-block__head">
+                        Bringing ideas to life.<br>
+                        Explore the world’s leading design portfolios!
+                    </h3>
+                    <p class="top-block__text">
+                        Welcome on DiGifolio – the best platform for design and art.
+                    </p>
+                </div>
+                <div class="top-block__menu">
+                    <a href="/profile" class="top-block__link">Мой профиль</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section__main">
+            <div class="container">
+                <div class="main">
+                    <div class="main__top-block">
+                        <p class="main__text">
+                            Like and comment on your favourite works!
+                        </p>
+                    </div>
+                    <div class="main__content">
+                        <?php foreach ($projects as $project) : ?>
+                            <div class="card-design">
+                                <div class="card-design__img-block">
+                                    <a href="/project/<?= $project->id ?>">
+                                        <img src="/uploads/<?= $project->img ?>" alt="pseudo" class="card-design__img">
+                                    </a>
+                                </div>
+                                <a class="card-design__author-link-block" href="/profile/<?= $project->user->id ?>">
+                                    <div class="card-design__author">
+                                        <div class="card-design__avatar">
+                                            <img src="<?= $project->user->avatar_min ?>" alt="account-min" class="card-design__author-img">
+                                        </div>
+                                        <div class="card-design__author-name">
+                                            <span class="card-design__author-link"><?= $project->user->name ?></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

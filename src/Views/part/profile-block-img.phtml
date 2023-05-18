@@ -1,0 +1,7 @@
+<? foreach ($projects as $project) : ?>
+    <div class="profile-block-img">
+        <a href="/project/<?= $project->id ?>" class="profile-block-img__link">
+            <img src="/uploads/<?= $project->img ?>" alt="pseudo" class="profile-block-img__image">
+        </a>
+    </div>
+<? endforeach; ?>

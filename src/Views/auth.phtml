@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Design</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=Italiana&family=Italianno&family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body">
+    <main>
+        <section class="section__auth">
+            <div class="container container--auth">
+                <div class="auth">
+                    <div class="auth__left">
+                        <div class="auth__top">
+                            <hr>
+                            <hr>
+                        </div>
+                        <div class="auth__main">
+                            <h1 class="auth__head">
+                                The World of Design
+                            </h1>
+                            <form class="auth-form" method="POST" action="/action/auth">
+                                <? if(isset($text)) echo '<span>'.$text.'</span>'; ?>
+                                <input class="auth-form__input" placeholder="Username or email" type="text" name="login" required>
+                                <input class="auth-form__input" placeholder="Password" type="password" name="password" required>
+                                <input class="btn-primary auth-form__submit" type="submit" value="Войти">
+                            </form>
+                            <button class="auth__sign-up js-modal">Зарегистрироваться</button>
+                        </div>
+                        <div class="auth__bottom">
+                            Created by 185”degree
+                        </div>
+                    </div>
+                    <div class="auth__right">
+                        <img src="/img/auth.jpg" alt="auth">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal__wrapper">
+        <div class="modal">
+            <div class="modal__title">
+                <span>Sign up to DiGifolio</span>
+            </div>
+            <div class="modal__body">
+                <form action="" method="POST" class="modal__main js-main-form">
+                    <div class="modal__fields">
+                        <label class="modal__label">
+                            <span class="modal__name">Ваше имя</span>
+                            <input type="text" class="modal__input name-input" name="name">
+                            <small></small>
+                        </label>
+                        <label class="modal__label">
+                            <span class="modal__name">Имя пользователя</span>
+                            <input type="text" class="modal__input username-input" name="username">
+                            <small></small>
+                        </label>
+                        <label class="modal__label">
+                            <span class="modal__name">Email</span>
+                            <input type="text" class="modal__input email-input" name="email">
+                            <small></small>
+                        </label>
+                        <label class="modal__label">
+                            <span class="modal__name">Пароль</span>
+                            <input type="password" placeholder="8+ символов" class="modal__input password-input" name="password">
+                            <small></small>
+                        </label>
+                    </div>
+                    <div class="modal__button">
+                        <button class="modal__action btn-primary" type="submit">Sign up</button>
+                        <small class="form-result"></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

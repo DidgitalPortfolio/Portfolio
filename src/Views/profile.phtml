@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Design Profile</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=Italiana&family=Italianno&family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body">
+    <header>
+        <div class="container">
+            <div class="profile-top">
+                <div class="profile-top__blocks">
+                    <div class="profile-top__left">
+                        <div class="profile-top__logo">
+                            <a href="/main" class="profile-top__logo-link">
+                                DiGifolio
+                            </a>
+                        </div>
+                        <div class="profile-top__account">
+                            <?= $user->username ?>
+                        </div>
+                        <div class="profile-top__new-post" <? if (!$own || $liked) : ?> style="visibility: hidden;" <? endif; ?>>
+                            <button class="profile-top__button-new-post js-modal-img">
+                                Выложить
+                            </button>
+                            <button class="profile-top__button-new-post profile-top__button-new-post--primary js-modal-socials">
+                                Настройка ссылок
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile-top__right">
+                        <div class="profile-top__image-block">
+                            <label>
+                                <input id="files" type="file" accept="image/*" class="profile-top__image-input" name="img">
+                                <div class="profile-top__image-block-plus"></div>
+                            </label>
+                            <div class="profile-top__image-outer">
+                                <img src="<?= $user->avatar ?>" alt="account" class="profile-top__image">
+                            </div>
+                        </div>
+                        <div class="profile-top__menu">
+                            <a href="/main" class="profile-top__link">
+                                Главная
+                            </a>
+                            <? if ($liked) : ?>
+                                <a href="/profile" class="profile-top__link profile-top__link--primary">
+                                    Назад
+                                </a>
+                            <? else : ?>
+                                <? if ($own) : ?>
+                                    <a href="/liked" class="profile-top__link profile-top__link--primary">
+                                        Понравившиеся
+                                    </a>
+                                <? endif; ?>
+                            <? endif; ?>
+                            <? if ($own) : ?>
+                                <a href="/logout" class="profile-top__link">
+                                    Выйти
+                                </a>
+                            <? endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section__profile-images">
+            <div class="container">
+                <div class="profile-images">
+                    <div class="profile-images__list">
+                        <? foreach ($projects as $project) : ?>
+                            <div class="profile-block-img">
+                                <a href="/project/<?= $project->id ?>" class="profile-block-img__link">
+                                    <img src="/uploads/<?= $project->img ?>" alt="pseudo" class="profile-block-img__image">
+                                </a>
+                            </div>
+                        <? endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal__wrapper">
+        <div class="modal modal--post">
+            <div class="modal-post">
+                <div class="modal-post__top">
+                    <div class="modal-post__left">
+                        <button class="modal-post__cancel btn-modal">
+                            Отмена
+                        </button>
+                    </div>
+                    <div class="modal-post__center">
+                        <div class="modal-post__message">
+
+                        </div>
+                    </div>
+                    <div class="modal-post__right">
+                        <button id="uploadImages" class="modal-post__save btn-modal btn-modal--primary">
+                            Сохранить
+                        </button>
+                        <!-- <button class="modal-post__post btn-modal">
+                            Post
+                        </button> -->
+                    </div>
+                </div>
+                <div class="modal-post__main">
+                    <form action="" class="modal-post__form" enctype="multipart/form-data">
+                        <input id="name" type="text" name="name" class="modal-post__input" placeholder="Give the name of art" maxlength="50">
+                        <label class="modal-post__label-img">
+                            <input id="files" type="file" accept="image/*" class="modal-post__image" name="imgs[]" multiple>
+                            <span class="modal-post__span">Tap and drop media</span>
+                        </label>
+                        <div id="previews" class="modal-post__previews">
+
+                        </div>
+                        <textarea id="description" class="modal-post__textarea" name="description" placeholder="Tap and text description of art"></textarea>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal__wrapper modal-socials">
+        <div class="modal modal--socials">
+            <div class="modal-socials">
+                <div class="modal-socials__top">
+                    <div class="modal-socials__left">
+                        <button class="modal-socials__cancel btn-modal">
+                            Отмена
+                        </button>
+                    </div>
+                    <div class="modal-socials__center">
+                        <div class="modal-socials__message">
+
+                        </div>
+                    </div>
+                    <div class="modal-socials__right">
+                        <button id="uploadSocials" class="modal-socials__save btn-modal btn-modal--primary">
+                            Сохранить
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-socials__main">
+                    <form action="" class="modal-socials__form">
+                        <div class="modal-socials__label modal-socials__label--vk">
+                            <input id="social-vk" type="text" name="vk" class="modal-socials__input" value="<?=@$user->vk?>" placeholder="Take your VK profile" maxlength="33">
+                        </div>
+                        <div class="modal-socials__label modal-socials__label--tg">
+                            <input id="social-tg" type="text" name="tg" class="modal-socials__input" value="<?=@$user->tg?>" placeholder="Take your Telegram" maxlength="33">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

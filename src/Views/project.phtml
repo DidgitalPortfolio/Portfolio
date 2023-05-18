@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World of Design Image</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&family=Italiana&family=Italianno&family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="body">
+    <header>
+        <div class="container">
+            <div class="image-top">
+                <h3 class="image-top__head">
+                    <a href="/main" class="image-top__logo-link">
+                        DiGifolio
+                    </a>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section__full-image">
+            <div class="container">
+                <div class="full-image">
+                    <div class="profile">
+                        <div class="profile__inner">
+                            <div class="profile__image">
+                                <img src="<?= $user->avatar ?>" alt="">
+                            </div>
+                            <div class="profile__desc">
+                                <div class="profile__name">
+                                    <?= $user->username ?>
+                                </div>
+                                <div class="profile__socials"  <? if ($user->tg == NULL && $user->vk == NULL) : ?> style="visibility: hidden;" <? endif; ?>>
+                                    <? if ($user->tg != NULL) : ?>
+                                        <a href="<?= $user->tg ?>" class="profile__icon-link" target="_blank">
+                                            <img src="/img/icon-tg.png" alt="" class="profile__icon">
+                                        </a>
+                                    <? endif; ?>
+                                    <? if ($user->vk != NULL) : ?>
+                                        <a href="<?= $user->vk ?>" class="profile__icon-link" target="_blank">
+                                            <img src="/img/icon-vk.png" alt="" class="profile__icon">
+                                        </a>
+                                    <? endif; ?>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="profile__menu">
+                            <a href="/profile" class="profile__link">Мой профиль</a>
+                        </div>
+                    </div>
+                    <div class="picture">
+                        <div class="picture__block">
+                            <div class="picture__desc">
+                                <h3 class="picture__head">
+                                    <?= $project->name ?>
+                                </h3>
+                                <div class="picture__text">
+                                    <?= $project->description ?>
+                                </div>
+                            </div>
+                            <div id="picture-anchor" class="picture__image">
+                                <img id="main-img" src="/uploads/<?= $project->img ?>" alt="">
+                            </div>
+                            <div class="picture__actions">
+                                <a id="like-js" data-project="<?= $project->id ?>" href="#" class="picture__icon-link">
+                                    <img src="<?= $myuser->like ?>" alt="">
+                                </a>
+                                <a id="com-js" href="#" class="picture__icon-link">
+                                    <img src="/img/icon-com.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-photos">
+                    <? if (count($images) > 1) : ?>
+                        <div class="next-photos__block">
+                            <h4 class="next-photos__head">
+                                Следующее фото:
+                            </h4>
+                            <div class="next-photos__images">
+                                <? foreach ($images as $image) : ?>
+                                    <div class="next-photos__image">
+                                        <img src="/uploads/<?= $image->filename ?>" alt="">
+                                    </div>
+                                <? endforeach; ?>
+                            </div>
+                        </div>
+                    <? endif; ?>
+                </div>
+                <div class="comments">
+                    <div class="comments__block">
+                        <div class="comments__close">
+                            <img src="/img/icon-close.png" alt="" class="comments__close-img">
+                        </div>
+                        <div class="comments__list">
+                            <? foreach ($comments as $comment) : ?>
+                                <div class="comment">
+                                    <div class="comment__img">
+                                        <img src="<?= $comment->avatar ?>" alt="" class="comment__image">
+                                    </div>
+                                    <div class="comment__desc">
+                                        <div class="comment__author">
+                                            <?= $comment->name ?>
+                                        </div>
+                                        <div class="comment__text">
+                                            <?= $comment->text ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <? endforeach; ?>
+                        </div>
+                        <div class="comments__new">
+                            <div class="comments__new-img">
+                                <img src="<?= $myuser->avatar_min ?>" alt="" class="comments__new-image">
+                            </div>
+                            <form class="comments__form" action="" method="POST">
+                                <input class="comments__input" type="text" name="comment" placeholder="Type" maxlength="110" required>
+                                <input type="hidden" name="project_id" value="<?= $project->id ?>">
+                                <button class="comments__submit" type="submit">
+                                    <img src="/img/icon-arrow.png" alt="" class="comments__submit-img">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-nav">
+                    <a href="/main" class="primary-btn bottom-nav__btn">
+                        Главная страница
+                    </a>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/jquery-3.6.4.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
